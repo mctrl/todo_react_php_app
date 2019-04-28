@@ -1,0 +1,31 @@
+#still WorkInProgress
+version: "3"
+
+services:
+  web:
+    image: webdevops/php-apache:alpine-php7
+    ports:
+      - "4500:80"
+    volumes:
+      - ./api:/app
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+      #- ./db-data:/var/lib/mysql
+      - ./bulbstudios.sql:/docker-entrypoint-initdb.d/bulbstudios.sql
+    environment: 
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: bulbstudios
+      MYSQL_USER: bulbstudios_admin
+      MYSQL_PASSWORD: UPWwBoxynISNm4Wa
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment: 
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: bulbstudios
+      MYSQL_USER: bulbstudios_admin
+      MYSQL_PASSWORD: UPWwBoxynISNm4Wa
+    ports:
+      - "8088:80"
