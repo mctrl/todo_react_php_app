@@ -43,7 +43,8 @@ INSERT INTO `todos` (`id`, `title`, `description`, `created`, `user`) VALUES
 (3, 'aaaaaaaa', 'this is a todo added from postman', '2019-04-27 14:36:35', 1),
 (4, 'bbbbbbb', 'this is a todo added from postman 2', '2019-04-27 14:44:47', 1),
 (5, 'cccccccccc', 'this is a todo added from postman 3', '2019-04-27 14:46:08', 1),
-(6, '', 'this is a todo added from postman 4', '2019-04-27 14:46:17', 1);
+(6, '', 'this is a todo added from postman 4', '2019-04-27 14:46:17', 1),
+(7, 'inserted', 'this is a todo added from host to container', '2019-04-28 14:46:17', 1);
 
 -- --------------------------------------------------------
 
