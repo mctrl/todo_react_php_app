@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 import TodoList from './components/TodoList';
 import SearchBox from './components/SearchBox';
 
@@ -14,7 +12,7 @@ class App extends Component  {
   }
 
   componentDidMount() {
-    fetch('http://localhost/dev/bulbstudios/api/read.php')
+    fetch('http://192.168.99.100:4500/read.php')
       .then(response=> response.json())
       .then(response => {this.setState({ todos: response.records})});
   }
