@@ -1,12 +1,12 @@
 <?php
 class Database{
-   
-   private $host = "localhost";
-   private $db_name = "<database_name>";
-   private $username = "<database_username>";
-   private $password = "<database_password>";
+
+   private $host = "db";
+   private $db_name = "bulbstudios";
+   private $username = "bulbstudios_admin";
+   private $password = "UPWwBoxynISNm4Wa";
    public $conn;
-   
+
    public function getConnection(){
        $this->conn = null;
        try{
@@ -19,5 +19,4 @@ class Database{
    }
 }
 ?>
-
 
