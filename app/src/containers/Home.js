@@ -9,7 +9,7 @@ import { setSearchField } from '../actions';
 //receives state information
 const mapStateToProps = (state) => {
     return {
-        searchField: state.searchField //change this is state.searchTodos.searchField when there's gonna be more states
+        searchField: state.searchTodos.searchField
     }
 };
 
