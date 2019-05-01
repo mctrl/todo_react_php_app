@@ -6,7 +6,7 @@ const SearchBox = ({ searchChange }) => {
           <input
             className='form-control'
             type='search'
-            placeholder='search todos'
+            placeholder='search todos 2'
             onChange={searchChange}
         />
       </div>
