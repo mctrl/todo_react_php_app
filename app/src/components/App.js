@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
-import Routes from './router';
+import React from 'react';
+import Routes from '../router';
 
-class App extends Component  {
+const App =() => {
 
-  render() {
     return (
       <div className="container-fluid">
         <div className="row">
@@ -15,7 +14,7 @@ class App extends Component  {
         </div>
       </div>
     );
-  }
+  
   
 }
 
