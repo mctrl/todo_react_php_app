@@ -10,10 +10,13 @@ export const setSearchField = (text) => ({
     payload: text
 });
 
-export const requestTodos = (dispatch) => {
-    dispatch({ type: REQUEST_TODOS_PENDING })
+//higher order function: a function returning a function
+export const requestTodos = () => (dispatch) => {
+    dispatch({ type: REQUEST_TODOS_PENDING });
     fetch('http://192.168.99.100:4500/read.php')
         .then(response=> response.json())
-        .then(data => dispatch({ type: REQUEST_TODOS_SUCCESS }, {payload: data.records}))
-        .catch(error => dispatch({ type: REQUEST_TODOS_FAILED }, {payload: error}))
+        .then(data => {
+            dispatch({ type: REQUEST_TODOS_SUCCESS , payload: data.records})
+        })
+        .catch(error => dispatch({ type: REQUEST_TODOS_FAILED, payload: error}))
 }

@@ -4,12 +4,15 @@ import TodoList from '../components/TodoList';
 import SearchBox from '../components/SearchBox';
 import {Redirect} from 'react-router-dom';
 import ErrorBoundry from '../components/Errors';
-import { setSearchField } from '../actions';
+import { setSearchField, requestTodos } from '../actions';
 
 //receives state information
 const mapStateToProps = (state) => {
     return {
-        searchField: state.searchTodos.searchField
+        searchField: state.searchTodos.searchField,
+        todos: state.requestTodos.todos,
+        isPending: state.requestTodos.isPending,
+        error: state.requestTodos.error
     }
 };
 
@@ -17,7 +20,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     //properties that are actions that needs to be sent to the state
     return {
-        onSearchChange: (event) => dispatch(setSearchField(event.target.value))
+        onSearchChange: (event) => dispatch(setSearchField(event.target.value)),
+        onRequestTodos: () => dispatch(requestTodos()) 
     }
 };
 
@@ -25,18 +29,13 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            todos: [],
             redirect: false
           }
         }
 
     componentWillMount() {
-        console.log()
         if( sessionStorage.getItem('userData')){
-            fetch('http://192.168.99.100:4500/read.php')
-                .then(response=> response.json())
-                .then(response => {this.setState({ todos: response.records})});
-  
+            this.props.onRequestTodos();
         } else {
             this.setState({redirect : true});
         }
@@ -54,11 +53,12 @@ class Home extends Component {
                 <Redirect to={'/login'}/>
             )
         }
-        const { todos } = this.state;
-        const { searchField, onSearchChange } = this.props;
+        const { searchField, onSearchChange, todos, isPending } = this.props;
         const filteredTodos = todos.filter(todo => todo.description.toLowerCase().includes(searchField.toLowerCase()));
     
-        return(
+        return isPending ? 
+        <h1>Loading ...</h1> :
+        (
             <div className="col-sm">
                 <button type="button" onClick={this.logout}>LogOut</button>
                 <SearchBox searchChange={ onSearchChange }/>
