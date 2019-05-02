@@ -5,7 +5,9 @@ import {
     REQUEST_TODOS_FAILED
 } from './constants';
 
-export const setSearchField = (text) => ({
+import { IAction } from './interfaces';
+
+export const setSearchField = (text): IAction => ({
     type: CHANGE_SEARCH_FIELD,
     payload: text
 });

@@ -5,13 +5,15 @@ import {
     REQUEST_TODOS_FAILED
 } from './constants';
 
+import { IAction } from './interfaces';
+
 const initialStateSearch = {
     searchField: ''
 }
 
 //create the function reducer (pure function)
 // collection of all the actions that act onto the searchField property of the state
-export const searchTodos = (state = initialStateSearch, action = {}) => {
+export const searchTodos = (state = initialStateSearch, action = {} as IAction) => {
     switch (action.type) { //could be an if statement but switch is recommended
         case CHANGE_SEARCH_FIELD:
             //return a new state
@@ -28,7 +30,7 @@ const initialStateRobots = {
     error: ''
 }
 
-export const requestTodos = (state = initialStateRobots, action = {}) => {
+export const requestTodos = (state = initialStateRobots, action = {} as IAction) => {
     switch (action.type) {
         case REQUEST_TODOS_PENDING:
             return {...state, isPending: true };

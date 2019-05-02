@@ -1,7 +1,16 @@
 import React, {Component} from 'react';
 import { PostData } from '../services/PostData';
 import {Redirect} from 'react-router-dom'
-class Login extends Component {
+
+interface ILoginProps {
+
+}
+interface ILoginState {
+    username: string,
+    password: string,
+    redirect: boolean
+}
+class Login extends Component<ILoginProps, ILoginState> {
     constructor(props){
         super(props);
         this.state = {
@@ -26,7 +35,13 @@ class Login extends Component {
     }
 
     onChange = (event) => {
-        this.setState({ [event.target.name] : event.target.value })
+        //test if this works
+        // var key = event.target.name
+        // if (Object.keys(this.state).includes(key)) {
+        //     this.setState({[key]: event.target.value } as Pick<ILoginState, keyof ILoginState>);
+        //   }
+        this.setState({[event.target.name]: event.target.value } as Pick<ILoginState, keyof ILoginState>);
+        //this.setState({ [event.target.name] : event.target.value})
     }
 
     render(){

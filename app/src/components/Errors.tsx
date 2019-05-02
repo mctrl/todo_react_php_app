@@ -1,6 +1,13 @@
 import React, {Component} from "react";
 
-class ErroBoundry extends Component {
+interface IErroBoundryProps {
+
+}
+
+interface IErroBoundryComponentState {
+    hasError: boolean
+}
+class ErroBoundry extends Component<IErroBoundryProps, IErroBoundryComponentState> {
     constructor(props){
         super(props);
         this.state = {

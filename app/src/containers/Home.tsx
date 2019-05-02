@@ -6,6 +6,25 @@ import {Redirect} from 'react-router-dom';
 import ErrorBoundry from '../components/Errors';
 import { setSearchField, requestTodos } from '../actions';
 
+interface ITodo {
+    id: number,
+    title: string,
+    description: string,
+    created: Date,
+    username: string
+}
+interface IHomeProps {
+    searchField: string,
+    todos: Array<ITodo>,
+    isPending: boolean,
+    error: object,
+    onRequestTodos():any
+    onSearchChange():any
+}
+
+interface IHomeState {
+    redirect: boolean
+}
 //receives state information
 const mapStateToProps = (state) => {
     return {
@@ -25,7 +44,7 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-class Home extends Component {
+class Home extends Component<IHomeProps, IHomeState> {
     constructor(props) {
         super(props);
         this.state = {
